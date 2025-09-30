@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class riley {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pontuações iniciais das emoções
+        int pontosAlegria = 0;
+        int pontosTristeza = 0;
+
+        System.out.println("SISTEMA DE ACOMPANHAMENTO DA RILEY");
+        System.out.println();
+
+        // 1. AMIZADES NA NOVA CIDADE
+        System.out.println("AMIZADES NA NOVA CIDADE");
+        System.out.print("Quantas novas amizades a Riley fez na cidade? ");
+        int amizades = scanner.nextInt();
+
+        if (amizades > 0) {
+            pontosAlegria += amizades * 10;
+            System.out.printf("Alegria recebeu %d pontos por %d amizade(s)!\n", amizades * 10, amizades);
+        } else {
+            pontosTristeza += 30;
+            System.out.println("Tristeza recebeu 30 pontos (nenhuma amizade feita).");
+        }
+
+        System.out.println();
+
+        // 2. PROVAS DA UNIVERSIDADE
+        System.out.println("PROVAS DA UNIVERSIDADE");
+        System.out.print("Digite a nota da prova A1 (0-10): ");
+        double notaA1 = scanner.nextDouble();
+
+        System.out.print("Digite a nota da prova A2 (0-10): ");
+        double notaA2 = scanner.nextDouble();
+
+        System.out.print("Digite a nota da prova A3 (0-10): ");
+        double notaA3 = scanner.nextDouble();
+
+        double media = (notaA1 + notaA2 + notaA3) / 3;
+        System.out.printf("Média das provas: %.2f\n", media);
+
+        if (media >= 7.0) {
+            pontosAlegria += 50;
+            System.out.println("Aprovada! Alegria recebeu 50 pontos.");
+        } else {
+            pontosTristeza += 50;
+            System.out.println("Reprovada! Tristeza recebeu 50 pontos.");
+        }
+
+        System.out.println();
+
+        // 3. EXERCÍCIOS DE PROGRAMAÇÃO
+        System.out.println("EXERCÍCIOS DE PROGRAMAÇÃO");
+        System.out.print("Quantos dos 10 exercícios a Riley conseguiu fazer? ");
+        int exerciciosFeitos = scanner.nextInt();
+
+        if (exerciciosFeitos < 0) exerciciosFeitos = 0;
+        if (exerciciosFeitos > 10) exerciciosFeitos = 10;
+
+        int exerciciosNaoFeitos = 10 - exerciciosFeitos;
+
+        // Pontos por exercícios feitos
+        pontosAlegria += exerciciosFeitos * 10;
+        System.out.printf("Alegria recebeu %d pontos por %d exercício(s) feito(s).\n",
+                exerciciosFeitos * 10, exerciciosFeitos);
+
+        // Pontos por exercícios não feitos
+        pontosTristeza += exerciciosNaoFeitos * 10;
+        System.out.printf("Tristeza recebeu %d pontos por %d exercício(s) não feito(s).\n",
+                exerciciosNaoFeitos * 10, exerciciosNaoFeitos);
+
+        System.out.println();
+
+        // RELATÓRIO FINAL
+        System.out.println("RELATÓRIO FINAL");
+        System.out.println("Pontuação da ALEGRIA: " + pontosAlegria + " pontos");
+        System.out.println("Pontuação da TRISTEZA: " + pontosTristeza + " pontos");
+        System.out.println();
+
+        // Determinar emoção predominante
+        if (pontosAlegria > pontosTristeza) {
+            System.out.println(" A mudança para a nova cidade foi uma experiência incrível para a Riley.");
+        } else if (pontosTristeza > pontosAlegria) {
+            System.out.println(" A mudança para a nova cidade foi uma experiência desagradável para a Riley.");
+        }
+        scanner.close();
+    }
+}
